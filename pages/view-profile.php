@@ -53,7 +53,7 @@
 				$user = $_SESSION["userAccount"];
                         	$user_id = $user->getAccountId();
                         
-                        	$qry = $pdo->prepare("select account_id, concat(last_name,', ',first_name,' ', middle_name) as Name, username, email_address, phone_number, address, birthday, user_picture from user_account where user_account.account_id = '$user_id'");
+                        	$qry = $pdo->prepare("SELECT accountNo, name as Name, username, address, image from accounts where accounts.accountNo = '$user_id'");
                         	$qry->execute();
                         	$profileqry = $qry->fetch();   
                         	echo '<div class="panel-heading">
@@ -63,7 +63,7 @@
 							      	<div class="row">
 						        <div class="col-md-3 col-lg-3 " align="center"> '; 
 
-							echo '<img class="profile_pic" style="width:100%;" src="data:image/jpeg;base64,'.base64_encode($profileqry['user_picture']).'"/>';
+							echo '<img class="profile_pic" style="width:100%;" src="data:image/jpeg;base64,'.base64_encode($profileqry['image']).'"/>';
 
 							echo "</div>
 				        	<div class='col-md-9 col-lg-9'> 
@@ -72,10 +72,6 @@
 				              <tr>
 				                <td>Username:</td>
 				                <td>" .  $profileqry['username']  ."</td>
-				              </tr>
-				              <tr>
-				                <td>Email Address:</td>
-				                <td>" . $profileqry['email_address'] . "</td>
 				              </tr>
                                 <tr>
 				                <td>Address:</td>

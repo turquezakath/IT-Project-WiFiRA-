@@ -11,19 +11,14 @@ class UserAccount
 
     /**
      * UserAccount constructor.
-     * @param $accountId
+     * @param $accountNo
+     * @param $roleId
+     * @param $name
+     * @param $address
      * @param $username
      * @param $password
-     * @param $address
-     * @param $firstName
-     * @param $lastName
-     * @param $middleName
-     * @param $status
-     * @param $emailAddress
-     * @param $birthday
-     * @param $phoneNumber
-     * @param $roleId
-     * @param $userPicture
+     * @param $accountStatus
+     * @param $image
      */
     public function __construct($accountNo, $roleId, $name, $address, $username, $password, $accountStatus, $image)
     {

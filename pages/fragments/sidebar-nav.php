@@ -19,31 +19,31 @@
             <a href=index.php><i class="fa fa-tachometer"></i> Dashboard<span class="fa arrow"></span></a>
         </li>
         <li style ="font-family: Cinzel Decorative; font-size:18px">
-            <a href="sales.php"><i class="fa fa-question-circle"></i> Sales<span class="fa arrow"></span></a>
+            <a href="sales.php"><i class="fa fa-usd "></i> Sales<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                  <li style ="font-family: Cinzel Decorative;">
-                    <a  href="sales-daily.php"><i class="fa fa-question-circle"></i>Daily</a>
+                    <a  href="sales-daily.php"><i class="fa fa-usd "></i>Daily</a>
                 </li>
                 <li style ="font-family: Cinzel Decorative;">
-                    <a  href="sales-weekly.php"><i class="fa fa-question-circle"></i>Weekly</a>
+                    <a  href="sales-weekly.php"><i class="fa fa-usd "></i>Weekly</a>
                 </li>
                 <li style ="font-family: Cinzel Decorative;">
-                    <a  href="sales-monthly.php"><i class="fa fa-question-circle"></i>Monthly</a>
+                    <a  href="sales-monthly.php"><i class="fa fa-usd "></i>Monthly</a>
                 </li>
                 <li style ="font-family: Cinzel Decorative;">
-                    <a  href="sales-yearly.php"><i class="fa fa-question-circle"></i>Yearly</a>
+                    <a  href="sales-yearly.php"><i class="fa fa-usd "></i>Yearly</a>
                 </li>
             </ul>				
         </li>
 
         <li style ="font-family: Cinzel Decorative; font-size:18px">
-            <a href="kiosk.php"><i class="fa fa-comments"></i>Kiosks<span class="fa arrow"></span></a>
+            <a href="kiosk.php"><i class="fa fa-barcode"></i>Kiosks<span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
             	<li style ="font-family: Cinzel Decorative;">
-                    <a  href="kiosk-manage.php"><i class="fa fa-comments"></i>Manage Kiosks</a>
+                    <a  href="kiosk-manage.php"><i class="fa fa-barcode"></i>Manage Kiosks</a>
                 </li>
 				<li style ="font-family: Cinzel Decorative;">
-                    <a  href="kiosk-add.php"><i class="fa fa-comments"></i>Add Kiosk</a>
+                    <a  href="kiosk-add.php"><i class="fa fa-barcode"></i>Add Kiosk</a>
                 </li>
             </ul>
         </li>

@@ -91,17 +91,17 @@ require 'classes/UserAccount.php';
                         /*
                          * The whole userAccount information pack into an object and place inside the user session for further usage
                          * */
-                        $accountNo = $rows["account_id"];
-                        $roleId = $rows["address"];
-                        $name = $rows["first_name"];
-                        $address = $rows["last_name"];
-                        $username = $rows["middle_name"];
-                        $password = $rows["status"];
-                        $accountStatus = $rows["email_address"];
-                        $image = $rows["birthday"];
+                        $accountNo = $rows["accountNo"];
+                        $roleId = $rows["roleId"];
+                        $name = $rows["name"];
+                        $address = $rows["address"];
+                        $username = $rows["username"];
+                        $password = $rows["password"];
+                        $accountStatus = $rows["accountStatus"];
+                        $image = $rows["image"];
 
                         $userAccount = new UserAccount($accountNo, $dbuser, '', $roleId, $name,
-                            $address, $username, $password, $accountStatus, $image);
+                            $address, $accountStatus, $image);
 
                         $_SESSION["userAccount"] = $userAccount;
 
@@ -155,17 +155,17 @@ require 'classes/UserAccount.php';
                         /*
                          * The whole userAccount information pack into an object and place inside the user session for further usage
                          * */
-                        $accountNo = $rows["account_id"];
-                        $roleId = $rows["address"];
-                        $name = $rows["first_name"];
-                        $address = $rows["last_name"];
-                        $username = $rows["middle_name"];
-                        $password = $rows["status"];
-                        $accountStatus = $rows["email_address"];
-                        $image = $rows["birthday"];
+                        $accountNo = $rows["accountNo"];
+                        $roleId = $rows["roleId"];
+                        $name = $rows["name"];
+                        $address = $rows["address"];
+                        $username = $rows["username"];
+                        $password = $rows["password"];
+                        $accountStatus = $rows["accountStatus"];
+                        $image = $rows["image"];
 
                         $userAccount = new UserAccount($accountNo, $dbuser, '', $roleId, $name,
-                            $address, $username, $password, $accountStatus, $image);
+                            $address, $accountStatus, $image);
 
                         $_SESSION["userAccount"] = $userAccount;
 
