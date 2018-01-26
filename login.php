@@ -60,8 +60,9 @@ require 'classes/UserAccount.php';
             require "pages/fragments/connection.php";
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $queryLogin = "SELECT * FROM user_account WHERE username='$username' AND password='$password' and role_id = 2 and status = 02 ";
-            $queryFail = "SELECT * FROM user_account WHERE username='$username' AND password='$password' and role_id = 2 and status = 01";
+            $queryLogin = "SELECT * FROM accounts WHERE username='$username' AND password='$password' and roleId='Admin' and accountStatus='Enable' ";
+            $queryFail = "SELECT * FROM accounts WHERE username='$username' AND password='$password' and roleId='Admin' and 
+              accountStatus='Enable' ";
             $records = $pdo->query($queryLogin);
             $records->execute();
             $counter = $records->rowCount();
@@ -90,20 +91,17 @@ require 'classes/UserAccount.php';
                         /*
                          * The whole userAccount information pack into an object and place inside the user session for further usage
                          * */
-                        $accountId = $rows["account_id"];
-                        $address = $rows["address"];
-                        $firstName = $rows["first_name"];
-                        $lastName = $rows["last_name"];
-                        $middleName = $rows["middle_name"];
-                        $status = $rows["status"];
-                        $emailAddress = $rows["email_address"];
-                        $birthday = $rows["birthday"];
-                        $phoneNumber = $rows["phone_number"];
-                        $roleId = $rows["role_id"];
-                        $userPicture = $rows["user_picture"];
+                        $accountNo = $rows["account_id"];
+                        $roleId = $rows["address"];
+                        $name = $rows["first_name"];
+                        $address = $rows["last_name"];
+                        $username = $rows["middle_name"];
+                        $password = $rows["status"];
+                        $accountStatus = $rows["email_address"];
+                        $image = $rows["birthday"];
 
-                        $userAccount = new UserAccount($accountId, $dbuser, '', $address, $firstName,
-                            $lastName, $middleName, $status, $emailAddress, $birthday, $phoneNumber, $roleId, $userPicture);
+                        $userAccount = new UserAccount($accountNo, $dbuser, '', $roleId, $name,
+                            $address, $username, $password, $accountStatus, $image);
 
                         $_SESSION["userAccount"] = $userAccount;
 
@@ -140,7 +138,7 @@ require 'classes/UserAccount.php';
             require "pages/fragments/connection.php";
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $queryLogin = "SELECT * FROM user_account WHERE username='$username' AND password='$password' and role_id = 2";
+            $queryLogin = "SELECT * FROM accounts WHERE username='$username' AND password='$password' and roleId='Admin' ";
 
             $records = $pdo->query($queryLogin);
             $records->execute();
@@ -157,20 +155,17 @@ require 'classes/UserAccount.php';
                         /*
                          * The whole userAccount information pack into an object and place inside the user session for further usage
                          * */
-                        $accountId = $rows["account_id"];
-                        $address = $rows["address"];
-                        $firstName = $rows["first_name"];
-                        $lastName = $rows["last_name"];
-                        $middleName = $rows["middle_name"];
-                        $status = $rows["status"];
-                        $emailAddress = $rows["email_address"];
-                        $birthday = $rows["birthday"];
-                        $phoneNumber = $rows["phone_number"];
-                        $roleId = $rows["role_id"];
-                        $userPicture = $rows["user_picture"];
+                        $accountNo = $rows["account_id"];
+                        $roleId = $rows["address"];
+                        $name = $rows["first_name"];
+                        $address = $rows["last_name"];
+                        $username = $rows["middle_name"];
+                        $password = $rows["status"];
+                        $accountStatus = $rows["email_address"];
+                        $image = $rows["birthday"];
 
-                        $userAccount = new UserAccount($accountId, $dbuser, '', $address, $firstName,
-                            $lastName, $middleName, $status, $emailAddress, $birthday, $phoneNumber, $roleId, $userPicture);
+                        $userAccount = new UserAccount($accountNo, $dbuser, '', $roleId, $name,
+                            $address, $username, $password, $accountStatus, $image);
 
                         $_SESSION["userAccount"] = $userAccount;
 

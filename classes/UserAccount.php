@@ -2,12 +2,12 @@
 
 /**
  * Created by PhpStorm.
- * User: zsarlene
+ * User: 
  * Date: 5/22/17
  */
 class UserAccount
 {
-    private $accountId, $username, $password, $address, $firstName, $lastName, $middleName, $status, $emailAddress, $birthday, $phoneNumber, $roleId, $userPicture;
+    private $accountNo, $roleId, $name, $address, $username, $password, $accountStatus, $image;
 
     /**
      * UserAccount constructor.
@@ -25,21 +25,16 @@ class UserAccount
      * @param $roleId
      * @param $userPicture
      */
-    public function __construct($accountId, $username, $password, $address, $firstName, $lastName, $middleName, $status, $emailAddress, $birthday, $phoneNumber, $roleId, $userPicture)
+    public function __construct($accountNo, $roleId, $name, $address, $username, $password, $accountStatus, $image)
     {
-        $this->accountId = $accountId;
+        $this->accountNo = $accountNo;
+        $this->roleId = $roleId;
+        $this->name = $name;
+        $this->address = $address;
         $this->username = $username;
         $this->password = $password;
-        $this->address = $address;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->middleName = $middleName;
-        $this->status = $status;
-        $this->emailAddress = $emailAddress;
-        $this->birthday = $birthday;
-        $this->phoneNumber = $phoneNumber;
-        $this->roleId = $roleId;
-        $this->userPicture = $userPicture;
+        $this->accountStatus = $accountStatus;
+        $this->image = $image;
     }
 
     /**
@@ -47,7 +42,7 @@ class UserAccount
      */
     public function getAccountId()
     {
-        return $this->accountId;
+        return $this->accountNo;
     }
 
     /**
@@ -55,7 +50,7 @@ class UserAccount
      */
     public function setAccountId($accountId)
     {
-        $this->accountId = $accountId;
+        $this->accountNo = $accountNo;
     }
 
     /**
@@ -109,49 +104,17 @@ class UserAccount
     /**
      * @return mixed
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
+        return $this->name;
     }
 
     /**
      * @param mixed $firstName
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param mixed $lastName
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMiddleName()
-    {
-        return $this->middleName;
-    }
-
-    /**
-     * @param mixed $middleName
-     */
-    public function setMiddleName($middleName)
-    {
-        $this->middleName = $middleName;
+        $this->name = $name;
     }
 
     /**
@@ -159,7 +122,7 @@ class UserAccount
      */
     public function getStatus()
     {
-        return $this->status;
+        return $this->accountStatus;
     }
 
     /**
@@ -167,55 +130,23 @@ class UserAccount
      */
     public function setStatus($status)
     {
-        $this->status = $status;
+        $this->accountStatus = $accountStatus;
     }
 
     /**
      * @return mixed
      */
-    public function getEmailAddress()
+    public function getUserPicture()
     {
-        return $this->emailAddress;
+        return $this->image;
     }
 
     /**
-     * @param mixed $emailAddress
+     * @param mixed $userPicture
      */
-    public function setEmailAddress($emailAddress)
+    public function setUserPicture($userPicture)
     {
-        $this->emailAddress = $emailAddress;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBirthday()
-    {
-        return $this->birthday;
-    }
-
-    /**
-     * @param mixed $birthday
-     */
-    public function setBirthday($birthday)
-    {
-        $this->birthday = $birthday;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * @param mixed $phoneNumber
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
+        $this->image = $image;
     }
 
     /**
@@ -233,20 +164,5 @@ class UserAccount
     {
         $this->roleId = $roleId;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getUserPicture()
-    {
-        return $this->userPicture;
-    }
-
-    /**
-     * @param mixed $userPicture
-     */
-    public function setUserPicture($userPicture)
-    {
-        $this->userPicture = $userPicture;
-    }
+    
 }
