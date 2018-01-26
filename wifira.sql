@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `wifira` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `wifira`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wifira
 -- ------------------------------------------------------
--- Server version	5.7.11
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -50,13 +48,13 @@ INSERT INTO `accounts` VALUES (1,'Staff','Alfa Leizel Leones','Baguio City','alf
 UNLOCK TABLES;
 
 --
--- Table structure for table `kiosk machine`
+-- Table structure for table `kioskmachine`
 --
 
-DROP TABLE IF EXISTS `kiosk machine`;
+DROP TABLE IF EXISTS `kioskmachine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `kiosk machine` (
+CREATE TABLE `kioskmachine` (
   `kioskId` int(11) NOT NULL,
   `kioskName` varchar(45) NOT NULL,
   `location` varchar(45) NOT NULL,
@@ -69,13 +67,13 @@ CREATE TABLE `kiosk machine` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `kiosk machine`
+-- Dumping data for table `kioskmachine`
 --
 
-LOCK TABLES `kiosk machine` WRITE;
-/*!40000 ALTER TABLE `kiosk machine` DISABLE KEYS */;
-INSERT INTO `kiosk machine` VALUES (11,'FSGS','SLU Main','192.168.9.2','Enable'),(12,'ASDF','Bakakeng','192.168.9.1','Enable'),(13,'SDFF','UB','192.168.9.3','Enable'),(14,'SCFG','Session','192.168.9.4','Enable'),(15,'WSCF','Burnham','192.168.9.5','Enable');
-/*!40000 ALTER TABLE `kiosk machine` ENABLE KEYS */;
+LOCK TABLES `kioskmachine` WRITE;
+/*!40000 ALTER TABLE `kioskmachine` DISABLE KEYS */;
+INSERT INTO `kioskmachine` VALUES (11,'FSGS','SLU Main','192.168.9.2','Enable'),(12,'ASDF','Bakakeng','192.168.9.1','Enable'),(13,'SDFF','UB','192.168.9.3','Enable'),(14,'SCFG','Session','192.168.9.4','Enable'),(15,'WSCF','Burnham','192.168.9.5','Enable');
+/*!40000 ALTER TABLE `kioskmachine` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -98,7 +96,7 @@ CREATE TABLE `sales` (
   KEY `kiosk_id_idx` (`kioskId`),
   KEY `account_no_idx` (`accountNo`),
   CONSTRAINT `account_no` FOREIGN KEY (`accountNo`) REFERENCES `accounts` (`accountNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `kiosk_id` FOREIGN KEY (`kioskId`) REFERENCES `kiosk machine` (`kioskId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `kiosk_id` FOREIGN KEY (`kioskId`) REFERENCES `kioskmachine` (`kioskId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `voucherCode` FOREIGN KEY (`voucherCode`) REFERENCES `vouchers` (`voucherCode`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -133,7 +131,7 @@ CREATE TABLE `vouchers` (
   KEY `voucherCode` (`voucherCode`),
   KEY `kioskId_idx` (`kioskId`),
   CONSTRAINT `accountNo` FOREIGN KEY (`accountNo`) REFERENCES `accounts` (`accountNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `kioskId` FOREIGN KEY (`kioskId`) REFERENCES `kiosk machine` (`kioskId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `kioskId` FOREIGN KEY (`kioskId`) REFERENCES `kioskmachine` (`kioskId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -156,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-26 23:13:38
+-- Dump completed on 2018-01-27  2:51:47
