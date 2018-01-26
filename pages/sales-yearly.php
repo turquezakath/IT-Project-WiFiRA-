@@ -39,7 +39,7 @@ require '../classes/UserAccount.php';
                     <div class="col-md-12">
                         <h1 style = "font-family: special elite; color:#000000">Sales</h1>
                         
-                                                <form id="search-form" name="search" action="" method="get">
+    <form id="search-form" name="search" action="" method="get">
     <input id="search-input" name="search" type="text">
     <input type="submit" name='submit' class="btn btn-warning" value="Search" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
                     </div>    
@@ -47,7 +47,7 @@ require '../classes/UserAccount.php';
                 <div class="jumbotron"> 
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example" name="anothercontent">
                         <?php
-                            include 'fragments/request-query.php';
+                            include 'fragments/request-query-yearly.php';
                             if(isset($_POST['request_done'])){
                                 $rid=$_POST['requestId'];
                                 $sql = $pdo->prepare("update service_request set request_status=4, end_servicing = curdate()  where request_id = '$rid';");
@@ -62,14 +62,6 @@ require '../classes/UserAccount.php';
                                 //echo "<meta http-equiv='refresh' content='0'>";
                             }
                         ?>
-                        <tr>
-                        <th>000234</th>
-                        <th>Sam's Iphone </th>
-                        <th>10212-09527</th>
-                        <th>20</th>
-                        <th>1.5 hours</th>
-                        <th>11-22-17</th>
-                        </tr>
                     </table>
                 </div>
                        <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    

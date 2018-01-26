@@ -50,10 +50,7 @@
                     include "fragments/connection.php";
 
                     if($password == $rePassword && $password != ''){
-                        $updateWithPass = "update user_account 
-                                                      set username=:username, password=:password, address=:address,
-                                                      name=:name
-                                                    where accountNo = '$accountNo';";
+                        $updateWithPass = "update user_account set username=:username, password=:password, address=:address, name=:name where accountNo = '$accountNo';";
                         $sql = $pdo->prepare($updateWithPass);
                         $sql->bindParam(':username', $username);
                         $sql->bindParam(':password', $password);
@@ -61,19 +58,16 @@
                         $sql->bindParam(':name', $name);
                         $sql->execute();
 
-                        $status = $account->getStatus();
+                        $accountStatus = $account->getStatus();
                         $roleId = $account->getRoleId();
-                        $userPicture = $account->getUserPicture();
+                        $image = $account->getUserPicture();
 
                         $_SESSION["userAccount"] = new UserAccount($accountNo, $username, '', $address, $name,
                             $accountStatus, $roleId, $image);
                         header('view-profile.php');
 
                     }else{
-                        $updateWithoutPass = "update user_account 
-                                                      set username=:username, password=:password, address=:address,
-                                                      name=:name
-                                                    where accountNo = '$accountNo';";
+                        $updateWithoutPass = "update user_account set username=:username, password=:password, address=:address, name=:name where accountNo = '$accountNo';";
                         $sql = $pdo->prepare($updateWithoutPass);
                         $sql->bindParam(':username', $username);
                         $sql->bindParam(':password', $password);
@@ -81,9 +75,9 @@
                         $sql->bindParam(':name', $name);
                         $sql->execute();
 
-                        $status = $account->getStatus();
+                        $accountStatus = $account->getStatus();
                         $roleId = $account->getRoleId();
-                        $userPicture = $account->getUserPicture();
+                        $image = $account->getUserPicture();
 
                         $_SESSION["userAccount"] = new UserAccount($accountNo, $username, '', $address, $name,
                             $accountStatus, $roleId, $image);
@@ -117,12 +111,7 @@
                           <fieldset>
                             <legend style = "font-family: special elite;">Profile</legend>
 
-                             <div class="form-group">
-                              <label for="inputname" class="col-lg-2 control-label" style = "font-family: milonga; font-size: 110%;">Name</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputname" placeholder="<?php echo $profileqry['name'] ?>" value="<?php echo $_SESSION["userAccount"]->getname()?>">
-                              </div>
-                              </div>
+
 
                              <div class="form-group">
                               <label for="inputAddress" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Address</label>
@@ -132,12 +121,20 @@
                               </div>
 
 
+
+                             <div class="form-group">
+                              <label for="inputname" class="col-lg-2 control-label" style = "font-family: milonga; font-size: 110%;">Name</label>
+                              <div class="col-lg-10">
+                                <input type="text" class="form-control" name="inputname" placeholder="<?php echo $profileqry['name'] ?>" value="<?php echo $_SESSION["userAccount"]->getName()?>">
+                              </div>
+                              </div>     
+
                             <div class="form-group">
                               <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Username</label>
                               <div class="col-lg-10">
                                 <input type="text" class="form-control" name="inputUsername" placeholder="<?php echo $profileqry['username'] ?>" value="<?php echo $_SESSION["userAccount"]->getUsername()?>">
                               </div>
-                            </div>
+                            </div>                                                     
 
                             </div>
                                 <div class="form-group">

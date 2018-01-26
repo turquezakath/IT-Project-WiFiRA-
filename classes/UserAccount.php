@@ -123,7 +123,7 @@ class UserAccount
     /**
      * @param mixed $status
      */
-    public function setStatus($status)
+    public function setStatus($accountStatus)
     {
         $this->accountStatus = $accountStatus;
     }
@@ -139,7 +139,7 @@ class UserAccount
     /**
      * @param mixed $userPicture
      */
-    public function setUserPicture($userPicture)
+    public function setUserPicture($image)
     {
         $this->image = $image;
     }
