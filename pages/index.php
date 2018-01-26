@@ -55,12 +55,12 @@ require '../classes/UserAccount.php';
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
-                                    $query = $pdo->prepare("SELECT * FROM service_request WHERE request_status = 01 and sp_id = '$user_id'");
+                                    $query = $pdo->prepare("SELECT * FROM sales");
                                     $query->execute();
                                     $result = $query->fetchAll();
                                     echo count($result);                                          
 
-                                    ?> Total Devices
+                                    ?> Current Day Earnings
                                 </strong>
                             </h4>
                         </div>
@@ -79,12 +79,12 @@ require '../classes/UserAccount.php';
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
-                                    $query = $pdo->prepare("SELECT * FROM service_request WHERE request_status = 04 and sp_id='$user_id' "); 
+                                    $query = $pdo->prepare("SELECT * FROM sales "); 
                                     $query->execute();
                                     $result = $query->fetchAll();
                                     echo count($result);                                          
 
-                                    ?> Daily Earnings
+                                    ?> Yesterday Earnings
                                 </strong>
                             </h4>
                         </div>
