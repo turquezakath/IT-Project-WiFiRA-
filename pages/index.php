@@ -52,7 +52,6 @@ require '../classes/UserAccount.php';
                         <div class="text-box">
                             <h4 align="center">
                                 <strong>
-                                    <i class="fa fa-flag fa-2x pull-left"></i>
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
@@ -77,7 +76,6 @@ require '../classes/UserAccount.php';
                         <div class="text-box" >
                             <h4 align="center">
                                 <strong>
-                                    <i class="fa fa-flag-checkered fa-2x pull-left"></i>
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
@@ -87,35 +85,6 @@ require '../classes/UserAccount.php';
                                     echo count($result);                                          
 
                                     ?> Yesterday Earnings
-                                </strong>
-                            </h4>
-                        </div>
-
-                     </div>
-                 </div>
-
-                 <div class="col-md-3 col-sm-6 col-xs-6">      
-
-                    <div class="btn btn-lg btn-primary">
-                        <div class="text-box" >
-                            <h4 align="center">
-                                <i class="fa fa-print fa-2x pull-left"></i>
-                                <strong>
-                                   Print Voucher
-                                </strong>
-                            </h4>
-                        </div>
-
-                     </div>
-                 </div>
-                 <div class="col-md-3 col-sm-6 col-xs-6">      
-
-                    <div class="btn btn-lg btn-primary">
-                        <div class="text-box" >
-                            <h4 align="center">
-                                <i class="fa fa-pencil fa-2x pull-left"></i>
-                                <strong>
-                                   Add Kiosk
                                 </strong>
                             </h4>
                         </div>

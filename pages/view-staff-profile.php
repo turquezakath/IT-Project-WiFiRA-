@@ -1,95 +1,125 @@
 <!DOCTYPE html>
 <?php
-    require '../classes/UserAccount.php';
-    session_start();
-    $sessionUserAccount = $_SESSION["userAccount"];
+require '../classes/UserAccount.php';
 ?>
 <html lang="en">
-<head>
+    <head>
         <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Cinzel+Decorative|Corben|Dancing+Script|Galindo|Gentium+Book+Basic|Great+Vibes|Henny+Penny|Indie+Flower|Kaushan+Script|Kurale|Life+Savers|Love+Ya+Like+A+Sister|Milonga|Miltonian+Tattoo|Niconne|Oregano|Original+Surfer|Pangolin|Parisienne|Philosopher|Princess+Sofia|Rancho|Risque|Salsa|Schoolbell|Special+Elite" rel="stylesheet">		
     </head>
 <?php
     include 'fragments/head.php';
 ?>
+<body>
+       <?php
+        //Start your session
+        session_start();
+        if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
+            echo "You are logged in as, " . $_SESSION['username'] . "!";
+        } else {
+            header("location: login.php");
+        }
 
-    <body>
-           
+        function echoActiveClassIfRequestMatches($requestUri){
+            $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
 
-           <?php
-            //Start your session
+            if ($current_file_name == $requestUri)
+                echo 'class="active-menu"';
+        }
 
-            if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
-                echo "You are logged in as, " . $_SESSION['username'] . "!";
-            } else {
-                header("location: login.php");
-            }
-            function echoActiveClassIfRequestMatches($requestUri){
-                $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
-                if ($current_file_name == $requestUri)
-                    echo 'class="active-menu"';
-            }
-            ?>
-
-            <div id="wrapper">
-                <?php include 'fragments/page-head.php'; ?>
-                <!-- /. NAV TOP  -->
-                <?php include 'fragments/sidebar-nav.php'; ?>
-                <!-- /. NAV SIDE  -->
-                <div id="page-wrapper" >
-                    <div id="page-inner">
-                    
-             <div class="row">
-                <div class="col-md-12">
-                	<h2 style = "font-family: special elite; color:#000000">View Profile</h2>   
-                </div>    
-            </div>
-
-            <div class="jumbotron">
-				<div class="container" >
-				  <div class="panel panel-info">
-
-				        <?php 
-
-				$user = $_SESSION["userAccount"];
-                        	$user_id = $user->getAccountId();
+    ?>
+    
+    <div id="wrapper">
+        <?php include 'fragments/page-head.php'; ?>
+        <!-- /. NAV TOP  -->
+        <?php include 'fragments/sidebar-nav.php'; ?>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style = "font-family: special elite; color:#000000">Manage Staff Accounts</h1>
                         
-                        	$qry = $pdo->prepare("select account_id, concat(last_name,', ',first_name,' ', middle_name) as Name, username, email_address, phone_number, address, birthday, user_picture from user_account where user_account.account_id = '$user_id'");
-                        	$qry->execute();
-                        	$profileqry = $qry->fetch();   
-                        	echo '<div class="panel-heading">
-							      	<h3 class="panel-title" style = "font-family: salsa;">' . $profileqry['Name'] . '</h3>
-					    		</div>
-							    <div class="panel-body">
-							      	<div class="row">
-						        <div class="col-md-3 col-lg-3 " align="center"> '; 
+    <form id="search-form" name="search" action="" method="get">
+    <input id="search-input" name="search" type="text">
+    <input type="submit" name='submit' class="btn btn-warning" value="Search" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
+                    </div>    
+                </div>
+                <div class="jumbotron"> 
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example" name="anothercontent">
+                        <?php
+                            include 'fragments/user-query.php';
+                            if(isset($_POST['request_done'])){
+                                $rid=$_POST['requestId'];
+                                $sql = $pdo->prepare("update service_request set request_status=4, end_servicing = curdate()  where request_id = '$rid';");
+                                $sql->execute();
+                                //echo "<meta http-equiv='refresh' content='0'>";
+                            }
 
-							echo '<img class="profile_pic" style="width:100%;" src="data:image/jpeg;base64,'.base64_encode($profileqry['user_picture']).'"/>';
+                            if(isset($_POST['request_cancel'])){
+                                $rid=$_POST['requestId'];
+                                $sql = $pdo->prepare("update service_request set request_status=5 where request_id = '$rid';");
+                                $sql->execute();
+                                //echo "<meta http-equiv='refresh' content='0'>";
+                            }
+                        ?>
+                    </table>
+                </div>
+                       <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    
+            </div>
+        </div>
+    </div>
 
-							echo "</div>
-				        	<div class='col-md-9 col-lg-9'> 
-				        	<table class='table table-user-information'>
-				            <tbody>
-				              <tr>
-				                <td>Username:</td>
-				                <td>" .  $profileqry['username']  ."</td>
-				              </tr>
-				              <tr>
-				                <td>Email Address:</td>
-				                <td>" . $profileqry['email_address'] . "</td>
-				              </tr>
-				             
-				            </tbody>
-				          </table>";
-				        ?>
-				        <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> --> 
-				          
-				          <a href="edit-profile.php" class="btn btn-primary">Edit Profile Info</a>
-				        </div>
-				      </div>
-				    </div>
-				            
-				          </div>
-				        </div>
-				      </div>
-    </body>
+    <!-- The Modal -->
+   <div id="reply_modal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Request Details</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <?php
+                         require_once 'fragments/connection.php';
+
+                         $usr = $_SESSION['username'];
+                         echo $usr;
+
+                        $query = $pdo->prepare("
+                                      SELECT b.username AS sp_username, a.username AS cust_username, 
+                                      request_status, pet_service.service_name, start_servicing, end_servicing,  service_price 
+                                              FROM service_request 
+                                              INNER JOIN user_account AS b ON service_request.sp_id = b.account_id  
+                                              INNER JOIN user_account AS a ON service_request.account_id = a.account_id  
+                                              INNER JOIN pet_service ON service_request.service_id = pet_service.service_id 
+                                              WHERE request_status = 03 AND b.username = '$usr';");
+                        $query->execute();
+                        $result = $query->fetchAll();
+
+                        
+                        foreach($result as $query){
+                            echo "<tr>";
+                            echo "<td>" . $query['start_servicing'] . "</td>";
+                            echo "<td>" . $query['end_servicing'] . "</td>";
+                            echo "<td>" . $query['request_status'] . "</td>";
+                            echo "<td>" . $query['service_name'] . "</td>";
+                            echo "<td>" . $query['cust_username'] . "</td>";
+                            echo "</tr>";
+                        }
+
+                        echo "</table>";
+
+                        ?>
+
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Accept</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>    
