@@ -34,11 +34,16 @@ require '../classes/UserAccount.php';
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 style = "font-family: special elite; color:#000000">Manage Staff Accounts</h1>
+                        <h1 style = "font-family: special elite; color:#000000">Manage Accounts</h1>
                         
     <form id="search-form" name="search" action="" method="get">
     <input id="search-input" name="search" type="text">
     <input type="submit" name='submit' class="btn btn-warning" value="Search" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
+                    <a class="btn btn-primary" href="#">
+                    <i class="fa fa-pencil fa-lg"></i> Edit Account</a>
+                    <a class="btn btn-danger" href="#">
+                    <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+
                     </div>    
                 </div>
                 <div class="jumbotron"> 
@@ -102,11 +107,14 @@ require '../classes/UserAccount.php';
 
                     </p>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Accept</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Reject</button>
                 </div>
             </div>
+
+        
         </div>
     </div>
 </body>

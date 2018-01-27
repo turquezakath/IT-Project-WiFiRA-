@@ -85,6 +85,11 @@ require '../classes/UserAccount.php';
                     </table>
                 </div>
                      <!--  <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    -->
+                    <a class="btn btn-primary" href="#">
+                    <i class="fa fa-plus-square fa-lg"></i> Update Status</a>
+                    <a class="btn btn-success" href="#">
+                    <i class="fa fa-file-text fa-lg"></i> Generate</a>
+
             </div>
         </div>
     </div>

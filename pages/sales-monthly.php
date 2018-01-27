@@ -63,7 +63,7 @@ require '../classes/UserAccount.php';
                 <div class="jumbotron"> 
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example" name="anothercontent">
                         <?php
-                            include 'fragments/request-query-monthly.php';
+                            include 'fragments/request-query.php';
                             if(isset($_POST['request_done'])){
                                 $rid=$_POST['requestId'];
                                 $sql = $pdo->prepare("update service_request set request_status=4, end_servicing = curdate()  where request_id = '$rid';");
@@ -80,7 +80,11 @@ require '../classes/UserAccount.php';
                         ?>
                     </table>
                 </div>
-                       <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    
+                       <!--  <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    -->
+                    <a class="btn btn-primary" href="#">
+                    <i class="fa fa-plus-square fa-lg"></i> Update Status</a>
+                    <a class="btn btn-success" href="#">
+                    <i class="fa fa-file-text fa-lg"></i> Generate</a>
             </div>
         </div>
     </div>

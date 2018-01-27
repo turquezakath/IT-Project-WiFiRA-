@@ -64,7 +64,11 @@ require '../classes/UserAccount.php';
                         ?>
                     </table>
                 </div>
-                       <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    
+                       <!--  <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    -->
+                    <a class="btn btn-primary" href="#">
+                    <i class="fa fa-pencil fa-lg"></i> Edit Kiosk</a>
+                    <a class="btn btn-danger" href="#">
+                    <i class="fa fa-trash-o fa-lg"></i> Delete</a>
             </div>
         </div>
     </div>
