@@ -76,12 +76,12 @@ require '../classes/UserAccount.php';
                     <div class="panel panel-back noti-box">
                         <div class="text-box" >
                             <h4 align="center">
-                            <i class="fa fa-plug fa-2x pull-left"></i>
+                                <i class="fa fa-barcode fa-2x pull-left"></i>
                                 <strong>
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
-                                    $query = $pdo->prepare("SELECT * FROM 'kiosk machine' "); 
+                                    $query = $pdo->prepare("SELECT * FROM `kiosk machine` WHERE kioskStatus='Enable' "); 
                                     $query->execute();
                                     $result = $query->fetchAll();
                                     echo count($result);                                          
@@ -93,7 +93,7 @@ require '../classes/UserAccount.php';
 
                      </div>
                  </div>
-            
+
                  <div class="col-md-3 col-sm-6 col-xs-6"> 
                     <a class="btn btn-lg btn-primary" href="#">
 
@@ -123,6 +123,8 @@ require '../classes/UserAccount.php';
                         </div>
                      </a>
                  </div>
+            
+
 
 
 

@@ -33,11 +33,15 @@
             <div id="wrapper">
                
 
-                ?>
+                
+                <?php include 'fragments/page-head.php'; ?>
                 <?php include 'fragments/sidebar-nav.php'; ?>
                 <!-- /. NAV SIDE  -->
                 <div id="page-wrapper" >
                     <div id="page-inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 style = "font-family: special elite; color:#000000">Add Kiosk</h1>
                     <?php
                         
                         $user = $_SESSION["userAccount"];
@@ -59,7 +63,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input type="text" name="location" id="location" class="form-control input-lg" placeholder="Password" value="<?php if(isset($error)){ echo $_POST['location']; } ?>" tabindex="2">
+                            <input type="text" name="location" id="location" class="form-control input-lg" placeholder="Location" value="<?php if(isset($error)){ echo $_POST['location']; } ?>" tabindex="2">
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
