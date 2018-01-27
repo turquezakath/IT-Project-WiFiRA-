@@ -18,14 +18,11 @@ require '../classes/UserAccount.php';
         } else {
             header("location: login.php");
         }
-
         function echoActiveClassIfRequestMatches($requestUri){
             $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
-
             if ($current_file_name == $requestUri)
                 echo 'class="active-menu"';
         }
-
     ?>
     
     <div id="wrapper">
@@ -54,7 +51,6 @@ require '../classes/UserAccount.php';
                                 $sql->execute();
                                 //echo "<meta http-equiv='refresh' content='0'>";
                             }
-
                             if(isset($_POST['request_cancel'])){
                                 $rid=$_POST['requestId'];
                                 $sql = $pdo->prepare("update service_request set request_status=5 where request_id = '$rid';");
@@ -63,14 +59,13 @@ require '../classes/UserAccount.php';
                             }
                         ?>
                     </table>
-                </div>
-                       <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    
+                    </div>
             </div>
         </div>
     </div>
 
     <!-- The Modal -->
-   <div id="reply_modal" class="modal">
+  <div id="reply_modal" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -86,24 +81,17 @@ require '../classes/UserAccount.php';
                          echo $usr;
 
                         $query = $pdo->prepare("
-                                      SELECT b.username AS sp_username, a.username AS cust_username, 
-                                      request_status, pet_service.service_name, start_servicing, end_servicing,  service_price 
-                                              FROM service_request 
-                                              INNER JOIN user_account AS b ON service_request.sp_id = b.account_id  
-                                              INNER JOIN user_account AS a ON service_request.account_id = a.account_id  
-                                              INNER JOIN pet_service ON service_request.service_id = pet_service.service_id 
-                                              WHERE request_status = 03 AND b.username = '$usr';");
+                                      SELECT * from accounts;");
                         $query->execute();
                         $result = $query->fetchAll();
 
                         
                         foreach($result as $query){
                             echo "<tr>";
-                            echo "<td>" . $query['start_servicing'] . "</td>";
-                            echo "<td>" . $query['end_servicing'] . "</td>";
-                            echo "<td>" . $query['request_status'] . "</td>";
-                            echo "<td>" . $query['service_name'] . "</td>";
-                            echo "<td>" . $query['cust_username'] . "</td>";
+                            echo "<td>" . $query['roleId'] . "</td>";
+                            echo "<td>" . $query['name'] . "</td>";
+                            echo "<td>" . $query['address'] . "</td>";
+                            echo "<td>" . $query['accountStatus'] . "</td>";
                             echo "</tr>";
                         }
 
