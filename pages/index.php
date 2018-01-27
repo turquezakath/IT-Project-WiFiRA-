@@ -55,12 +55,12 @@ require '../classes/UserAccount.php';
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
-                                    $query = $pdo->prepare("SELECT * FROM sales");
+                                    $query = $pdo->prepare("SELECT * FROM vouchers WHERE voucherStatus='Sold' ");
                                     $query->execute();
                                     $result = $query->fetchAll();
                                     echo count($result);                                          
 
-                                    ?> Current Day Earnings
+                                    ?> Vouchers Sold Today
                                 </strong>
                             </h4>
                         </div>
@@ -79,12 +79,12 @@ require '../classes/UserAccount.php';
                                     <?php
                                     $datenow = date("Y-m");
                                     require_once 'fragments/connection.php';
-                                    $query = $pdo->prepare("SELECT * FROM sales "); 
+                                    $query = $pdo->prepare("SELECT * FROM 'kiosk machine' "); 
                                     $query->execute();
                                     $result = $query->fetchAll();
                                     echo count($result);                                          
 
-                                    ?> Yesterday Earnings
+                                    ?> Kiosks Enabled
                                 </strong>
                             </h4>
                         </div>
