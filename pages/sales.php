@@ -84,7 +84,7 @@ require '../classes/UserAccount.php';
                         ?>
                     </table>
                 </div>
-                       <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    
+                     <!--  <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    -->
             </div>
         </div>
     </div>
