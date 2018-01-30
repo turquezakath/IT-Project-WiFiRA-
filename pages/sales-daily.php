@@ -43,7 +43,7 @@ require '../classes/UserAccount.php';
     <input id="search-input" name="search" type="text">
     <input type="submit" name='submit' class="btn btn-warning" value="Search" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
                     
-                    <form action="sales.php" method="get">
+                    <form action="sales-daily.php" method="get">
                         <select name="user">
                             <option value="">Choose Entity</option>
                             <?php 
@@ -63,7 +63,7 @@ require '../classes/UserAccount.php';
                 <div class="jumbotron"> 
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example" name="anothercontent">
                         <?php
-                            include 'fragments/request-query.php';
+                            include 'fragments/request-query-daily.php';
                             if(isset($_POST['request_done'])){
                                 $rid=$_POST['requestId'];
                                 $sql = $pdo->prepare("update service_request set request_status=4, end_servicing = curdate()  where request_id = '$rid';");
