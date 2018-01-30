@@ -36,12 +36,26 @@
             </ul>				
         </li>
 
+        <li style ="font-family: Cinzel Decorative; font-size:18px">
+            <a href="#"><i class="fa fa-barcode"></i>Kiosks<span class="fa arrow"></span></a>
+			<ul class="nav nav-second-level">
+            	<li style ="font-family: Cinzel Decorative;">
+                    <a  href="kiosk-manage.php"><i class="fa fa-barcode"></i>Manage Kiosks</a>
+                </li>
+				<li style ="font-family: Cinzel Decorative;">
+                    <a  href="kiosk-add.php"><i class="fa fa-barcode"></i>Add Kiosk</a>
+                </li>
+            </ul>
+        </li>
         <li  style ="font-family: Cinzel Decorative;">
             <a href="#"  style ="font-family: Cinzel Decorative; font-size:18px"><i class="fa fa-user" ></i> Accounts<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li style ="font-family: Cinzel Decorative;">
                     <a  href="view-profile.php"><i class="fa fa-user fa-3x"></i> View Profile</a>
                 </li>
+                <li style ="font-family: Cinzel Decorative;">
+                                    <a  href="view-staff-profile.php"><i class="fa fa-user fa-3x"></i>Manage Staff Accounts</a>
+                                </li>
                 <li style ="font-family: Cinzel Decorative;">
                     <a href="edit-profile.php"><i class="fa fa-pencil-square fa-3x"></i> Edit Profile</a>
                 </li>
