@@ -94,7 +94,35 @@ require '../classes/UserAccount.php';
                      </div>
                  </div>
 
-                 
+                 <div class="col-md-3 col-sm-6 col-xs-6"> 
+                    <a class="btn btn-lg btn-primary" href="#">
+
+                        <div class="text-box" >
+
+                            <h4 align="center">
+                                <i class="fa fa-print fa-2x pull-left"></i>
+                                <strong>
+                                     Print Voucher
+                                </strong>
+                            </h4>
+                        </div>
+                     </a>
+                 </div>
+
+                 <div class="col-md-3 col-sm-6 col-xs-6"> 
+                    <a class="btn btn-lg btn-primary" href="kiosk-add.php">
+
+                        <div class="text-box" >
+
+                            <h4 align="center">
+                                <i class="fa fa-plus fa-2x pull-left"></i>
+                                <strong>
+                                     Add Kiosk
+                                </strong>
+                            </h4>
+                        </div>
+                     </a>
+                 </div>
             
 
 
