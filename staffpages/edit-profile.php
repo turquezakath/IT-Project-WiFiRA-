@@ -114,9 +114,9 @@
 
 
                              <div class="form-group">
-                              <label for="inputAddress" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Address</label>
+                              <label for="inputAddress" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Username</label>
                               <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputAddress" placeholder="<?php echo $profileqry['address'] ?>" value="<?php echo $_SESSION["userAccount"]->getAddress()?>">
+                                <input type="text" class="form-control" name="inputAddress" placeholder="<?php echo $profileqry['address'] ?>" value="<?php echo $_SESSION["userAccount"]->getRoleId()?>">
                               </div>
                               </div>
 
@@ -125,14 +125,14 @@
                              <div class="form-group">
                               <label for="inputname" class="col-lg-2 control-label" style = "font-family: milonga; font-size: 110%;">Name</label>
                               <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputname" placeholder="<?php echo $profileqry['name'] ?>" value="<?php echo $_SESSION["userAccount"]->getName()?>">
+                                <input type="text" class="form-control" name="inputname" placeholder="<?php echo $profileqry['name'] ?>" value="<?php echo $_SESSION["userAccount"]->getUsername()?>">
                               </div>
                               </div>     
 
                             <div class="form-group">
-                              <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Username</label>
+                              <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Address</label>
                               <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputUsername" placeholder="<?php echo $profileqry['username'] ?>" value="<?php echo $_SESSION["userAccount"]->getUsername()?>">
+                                <input type="text" class="form-control" name="inputUsername" placeholder="<?php echo $profileqry['username'] ?>" value="<?php echo $_SESSION["userAccount"]->getPassword()?>">
                               </div>
                             </div>                                                     
 
@@ -155,8 +155,8 @@
                               ?>
                                    <div class="form-group">
                                   <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="reset" class="btn btn-default">Cancel</button>
-                                    <button type="submit" name="saveprofile" class="btn btn-primary" id="saveprofile" value="submit">Confirm</button>
+                                    <a class="btn btn-default" href="view-profile.php" >Cancel</a>
+                                    <a class="btn btn-primary"  href="view-profile.php">Confirm</a>
                                   </div>
                                 </div>
                             </fieldset>
