@@ -24,21 +24,20 @@ require 'classes/UserAccount.php';
 </head>
 <body>
   <div align="left">
-    <div style="width:310px; border: solid 5px #686667; " align="left">
+    <div style="width:310px; border: solid 5px #004d00;border-radius: 5px; border-style: double; " align="left">
       <?php
         if(isset($errMsg)){
           echo '<div style="color:black;text-align:center;font-size:120px;">'.$errMsg.'</div>';
         }
       ?>
-      <div style="background-color:#686667; color:#FFFFFF; padding:15px;text-align:center; font-family:life savers; font-size:30px;"><b>WiFiRA Login</b></div>
+      <div style="background: linear-gradient(to bottom, #00cc00 2%, #99ff99 109%);; color:#000000; padding:15px;text-align:center; font-family:life savers; font-size:30px;"><b>WiFiRA Login</b></div>
       <div style="margin:30px">
           <form action="" method="post">
           <label style="color:#000000; text-align: center; font-family:life savers; font-size:18px;"><b> Username: </b></label><input type="text" name="username" class="box"/><br /><br />
           <label style="color:	#000000; text-align: center ;font-family:life savers; font-size:18px;"><b>Password:</b></label><input type="password" name="password" class="box" /><br/><br />
-          <input type="submit" name='submit' class="btn btn-warning" value="Submit" class="col s6" class='submit' style="background-color:#686667; font-family:life savers; font-size:18px;"/><br />
+          <input type="submit" name='submit' class="btn btn-warning" value="Submit" class="col s6" class='submit' style="background-color:#686667; font-family:life savers; font-size:18px; " /><br />
           </form>
-          <form action="signup.php" method="post">
-          <input type="submit" value="Add Account" name="signup" class="btn btn-warning" style="background-color:#686667; font-family:life savers; font-size:18px;"/>
+          
       </div>
     </div>
   </div>
