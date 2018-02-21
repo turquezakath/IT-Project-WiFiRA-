@@ -4,12 +4,15 @@ require '../classes/UserAccount.php';
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Cinzel+Decorative|Corben|Dancing+Script|Galindo|Gentium+Book+Basic|Great+Vibes|Henny+Penny|Indie+Flower|Kaushan+Script|Kurale|Life+Savers|Love+Ya+Like+A+Sister|Milonga|Miltonian+Tattoo|Niconne|Oregano|Original+Surfer|Pangolin|Parisienne|Philosopher|Princess+Sofia|Rancho|Risque|Salsa|Schoolbell|Special+Elite" rel="stylesheet">		
+        <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Cinzel+Decorative|Corben|Dancing+Script|Galindo|Gentium+Book+Basic|Great+Vibes|Henny+Penny|Indie+Flower|Kaushan+Script|Kurale|Life+Savers|Love+Ya+Like+A+Sister|Milonga|Miltonian+Tattoo|Niconne|Oregano|Original+Surfer|Pangolin|Parisienne|Philosopher|Princess+Sofia|Rancho|Risque|Salsa|Schoolbell|Special+Elite" rel="stylesheet">
+        
+		
     </head>
 <?php
     include 'fragments/head.php';
     ?>
 <body id="index">
+
 <?php 
     session_start();
     
@@ -144,8 +147,76 @@ require '../classes/UserAccount.php';
 <input type="submit" name='submit' class="btn btn-warning" value="Monthly" class="col s6" class='submit' style="background-color:#4DD14D; font-family:monospace; font-size:18px;"/>
                         <input type="submit" name='submit' class="btn btn-warning" value="Yearly" class="col s6" class='submit' style="background-color:#4DD14D; font-family:monospace; font-size:18px;"/><br />
 								<br>
-							   <img src="assets\img\chart1.png"><br>
-                            </h4>
+							    </h4>
+
+                            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                            <script src="assets/js/highcharts.js"></script>
+                            <script src="assets/js/exporting.js"></script>
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <script type="text/javascript">
+
+                            $.getJSON(
+                                'https://cdn.rawgit.com/highcharts/highcharts/v6.0.5/samples/data/usdeur.json',
+                                function (data) {
+
+                                    Highcharts.chart('container', {
+                                        chart: {
+                                            zoomType: 'x'
+                                        },
+                                        title: {
+                                            text: 'USD to EUR exchange rate over time'
+                                        },
+                                        subtitle: {
+                                            text: document.ontouchstart === undefined ?
+                                                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                                        },
+                                        xAxis: {
+                                            type: 'datetime'
+                                        },
+                                        yAxis: {
+                                            title: {
+                                                text: 'Exchange rate'
+                                            }
+                                        },
+                                        legend: {
+                                            enabled: false
+                                        },
+                                        plotOptions: {
+                                            area: {
+                                                fillColor: {
+                                                    linearGradient: {
+                                                        x1: 0,
+                                                        y1: 0,
+                                                        x2: 0,
+                                                        y2: 1
+                                                    },
+                                                    stops: [
+                                                        [0, Highcharts.getOptions().colors[0]],
+                                                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                                    ]
+                                                },
+                                                marker: {
+                                                    radius: 2
+                                                },
+                                                lineWidth: 1,
+                                                states: {
+                                                    hover: {
+                                                        lineWidth: 1
+                                                    }
+                                                },
+                                                threshold: null
+                                            }
+                                        },
+
+                                        series: [{
+                                            type: 'area',
+                                            name: 'USD to EUR',
+                                            data: data
+                                        }]
+                                    });
+                                }
+                            );
+                                    </script>
                         </div>
 
                      </div>
