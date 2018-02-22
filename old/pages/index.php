@@ -4,12 +4,15 @@ require '../classes/UserAccount.php';
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Cinzel+Decorative|Corben|Dancing+Script|Galindo|Gentium+Book+Basic|Great+Vibes|Henny+Penny|Indie+Flower|Kaushan+Script|Kurale|Life+Savers|Love+Ya+Like+A+Sister|Milonga|Miltonian+Tattoo|Niconne|Oregano|Original+Surfer|Pangolin|Parisienne|Philosopher|Princess+Sofia|Rancho|Risque|Salsa|Schoolbell|Special+Elite" rel="stylesheet">		
+        <link href="https://fonts.googleapis.com/css?family=Allura|Arima+Madurai|Cinzel+Decorative|Corben|Dancing+Script|Galindo|Gentium+Book+Basic|Great+Vibes|Henny+Penny|Indie+Flower|Kaushan+Script|Kurale|Life+Savers|Love+Ya+Like+A+Sister|Milonga|Miltonian+Tattoo|Niconne|Oregano|Original+Surfer|Pangolin|Parisienne|Philosopher|Princess+Sofia|Rancho|Risque|Salsa|Schoolbell|Special+Elite" rel="stylesheet">
+        
+		
     </head>
 <?php
     include 'fragments/head.php';
     ?>
 <body id="index">
+
 <?php 
     session_start();
     
@@ -34,24 +37,24 @@ require '../classes/UserAccount.php';
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2 style = "font-family: special elite; color:#000000">Dashboard</h2>
-                        <h5>Welcome 
+                     <h1 style = "font-family: special elite; color:#4A8162;">Dashboard</h1>
+                        <h4 style = "font-family: Jazz LET, fantasy; color:#4A8162;">Welcome    
                             <?php  
                                     
                                     echo  $_SESSION["username"];
 
-                            ?> </h5>
+                            ?> </h4>
                     </div>
                 </div>              
                  <!-- /. ROW  -->
                 <hr/> 
 
-                           <div class="row">    
+                           <div class="row" style = "font-family: special elite; color:#0F4D2A;">    
                 <div class="col-md-3 col-sm-6 col-xs-6" >           
-                    <div class="panel panel-back noti-box ">
+                    <div class="alert alert-success">
                         <div class="text-box">
                             <h4 align="center">
-                                <i class="fa fa-flag fa-2x pull-left"></i>
+                                <i class="fa fa-tags fa-2x pull-left"></i>
                                 <strong>
                                     <?php
                                     $datenow = date("Y-m");
@@ -73,8 +76,8 @@ require '../classes/UserAccount.php';
            
                 <div class="col-md-3 col-sm-6 col-xs-6">      
 
-                    <div class="panel panel-back noti-box">
-                        <div class="text-box" >
+                    <div class="alert alert-success">
+                        <div class="text-box"  >
                             <h4 align="center">
                                 <i class="fa fa-barcode fa-2x pull-left"></i>
                                 <strong>
@@ -95,82 +98,22 @@ require '../classes/UserAccount.php';
                  </div>
 
                  <div class="col-md-3 col-sm-6 col-xs-6"> 
+                    <a class="btn btn-lg btn-success" href="#">
 
-                        <div class="container">
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Print Voucher</button>
+                        <div class="text-box" >
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Print Voucher</h4>
-        </div>
-        <div class="modal-body">
-            <div class="jumbotron">
-           <form class="form-horizontal" action="" method="post">
-                          <fieldset>
-                             
-                            <div class="form-group">
-                              <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Create</label>
-                                <div class="col-lg-10">
-                                <input type="text" class="form-control" name="" placeholder="">
-                                </div>
-        
-                            </div>                                                     
-
-                                <div class="form-group">
-                              <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Quota</label>
-                                <div class="col-lg-10">
-                                <input type="text" class="form-control" name="" placeholder="">
-                                </div>
-        
-                            </div>        
-                                <div class="form-group">
-                              <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Expiration Time (hrs)</label>
-                                <div class="col-lg-10">
-                                <input type="text" class="form-control" name="" placeholder="">
-                                </div>
-        
-                            </div>              
-                           
-                                <div class="form-group">
-                              <label for="inputPassword" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Notes</label>
-                                      <div class="col-lg-10">
-                                <input type="text" class="form-control" name="" placeholder="">
-                                    </div>
-                              
-                            </div>
-
-                     
-                              <?php
-                                include 'draft.php';
-                              ?>
-                                   <div class="form-group">
-                                  <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="reset" class="btn btn-default">Cancel</button>
-                                    <button type="submit" name="saveprofile" class="btn btn-primary" id="saveprofile" value="submit">Confirm</button>
-                                  </div>
-                                </div>
-                            </fieldset>
-                        </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+                            <h4 align="center">
+                                <i class="fa fa-print fa-2x pull-left"></i>
+                                <strong>
+                                     Print Voucher
+                                </strong>
+                            </h4>
+                        </div>
+                     </a>
                  </div>
 
                  <div class="col-md-3 col-sm-6 col-xs-6"> 
-                    <a class="btn btn-lg btn-primary" href="#">
+                    <a class="btn btn-lg btn-success" href="#">
 
                         <div class="text-box" >
 
@@ -199,12 +142,81 @@ require '../classes/UserAccount.php';
                         <div class="text-box" >
                             <h4 align="left">
 
-<input type="submit" name='submit' class="btn btn-warning" value="Daily" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
-                        <input type="submit" name='submit' class="btn btn-warning" value="Weekly" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
-<input type="submit" name='submit' class="btn btn-warning" value="Monthly" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/>
-                        <input type="submit" name='submit' class="btn btn-warning" value="Yearly" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />
-                                <img src="assets\img\chart.png"><br>
-                            </h4>
+<input type="submit" name='submit' class="btn btn-warning" value="Daily" class="col s6" class='submit' style="background-color:#4DD14D; font-family:monospace; font-size:18px;"/>
+                        <input type="submit" name='submit' class="btn btn-warning" value="Weekly" class="col s6" class='submit' style="background-color:#4DD14D; font-family:monospace; font-size:18px;"/>
+<input type="submit" name='submit' class="btn btn-warning" value="Monthly" class="col s6" class='submit' style="background-color:#4DD14D; font-family:monospace; font-size:18px;"/>
+                        <input type="submit" name='submit' class="btn btn-warning" value="Yearly" class="col s6" class='submit' style="background-color:#4DD14D; font-family:monospace; font-size:18px;"/><br />
+								<br>
+							    </h4>
+
+                            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                            <script src="assets/js/highcharts.js"></script>
+                            <script src="assets/js/exporting.js"></script>
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <script type="text/javascript">
+
+                            $.getJSON(
+                                'https://cdn.rawgit.com/highcharts/highcharts/v6.0.5/samples/data/usdeur.json',
+                                function (data) {
+
+                                    Highcharts.chart('container', {
+                                        chart: {
+                                            zoomType: 'x'
+                                        },
+                                        title: {
+                                            text: 'USD to EUR exchange rate over time'
+                                        },
+                                        subtitle: {
+                                            text: document.ontouchstart === undefined ?
+                                                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                                        },
+                                        xAxis: {
+                                            type: 'datetime'
+                                        },
+                                        yAxis: {
+                                            title: {
+                                                text: 'Exchange rate'
+                                            }
+                                        },
+                                        legend: {
+                                            enabled: false
+                                        },
+                                        plotOptions: {
+                                            area: {
+                                                fillColor: {
+                                                    linearGradient: {
+                                                        x1: 0,
+                                                        y1: 0,
+                                                        x2: 0,
+                                                        y2: 1
+                                                    },
+                                                    stops: [
+                                                        [0, Highcharts.getOptions().colors[0]],
+                                                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                                    ]
+                                                },
+                                                marker: {
+                                                    radius: 2
+                                                },
+                                                lineWidth: 1,
+                                                states: {
+                                                    hover: {
+                                                        lineWidth: 1
+                                                    }
+                                                },
+                                                threshold: null
+                                            }
+                                        },
+
+                                        series: [{
+                                            type: 'area',
+                                            name: 'USD to EUR',
+                                            data: data
+                                        }]
+                                    });
+                                }
+                            );
+                                    </script>
                         </div>
 
                      </div>
@@ -215,7 +227,7 @@ require '../classes/UserAccount.php';
          <!-- /. PAGE WRAPPER  -->
         </div>
     
-   
+ 
 </body>
 </html>
 
