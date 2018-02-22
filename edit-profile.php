@@ -36,73 +36,51 @@
                 <?php
                 if(isset($_POST['saveprofile'])){
                     $account = $_SESSION["userAccount"];
-                    $accountId = $account->getAccountId();
+                    $accountNo = $account->getAccountId();
 
 
                     $username = $_POST['inputUsername'];
                     $password = $_POST['inputPassword'];
                     $rePassword = $_POST['inputRePassword'];
                     $address = $_POST['inputAddress'];
-                    $fname = $_POST['inputFname'];
-                    $mname = $_POST['inputMname'];
-                    $lname = $_POST['inputLname'];
-                    $emailadd = $_POST['inputEmail'];
-                    $birthday = $_POST['inputBirthday'];
-                    $phonenum = $_POST['inputPhonenum'];
+                    $name = $_POST['inputname'];
                     //$selfinfo = $_POST['selfinfo'];
                     //$yearexp = $_POST['inputExp'];
 
                     include "fragments/connection.php";
 
                     if($password == $rePassword && $password != ''){
-                        $updateWithPass = "update user_account 
-                                                      set username=:username, password=:password, address=:address,
-                                                      first_name=:fname, middle_name=:mname, last_name=:lname, email_address=:emailadd,
-                                                      birthday=:birthday, phone_number=:phonenum
-                                                    where account_id = '$accountId';";
+                        $updateWithPass = "update user_account set username=:username, password=:password, address=:address, name=:name where accountNo = '$accountNo';";
                         $sql = $pdo->prepare($updateWithPass);
                         $sql->bindParam(':username', $username);
                         $sql->bindParam(':password', $password);
                         $sql->bindParam(':address', $address);
-                        $sql->bindParam(':fname', $fname);
-                        $sql->bindParam(':mname', $mname);
-                        $sql->bindParam(':lname', $lname);
-                        $sql->bindParam(':emailadd', $emailadd);
-                        $sql->bindParam(':birthday', $birthday);
-                        $sql->bindParam(':phonenum', $phonenum);
+                        $sql->bindParam(':name', $name);
                         $sql->execute();
 
-                        $status = $account->getStatus();
+                        $accountStatus = $account->getStatus();
                         $roleId = $account->getRoleId();
-                        $userPicture = $account->getUserPicture();
+                        $image = $account->getUserPicture();
 
-                        $_SESSION["userAccount"] = new UserAccount($accountId, $username, '', $address, $fname,
-                            $lname, $mname, $status, $emailadd, $birthday, $phonenum, $roleId, $userPicture);
+                        $_SESSION["userAccount"] = new UserAccount($accountNo, $username, '', $address, $name,
+                            $accountStatus, $roleId, $image);
                         header('view-profile.php');
 
                     }else{
-                        $updateWithoutPass = "update user_account 
-                                                      set username=:username, address=:address,
-                                                      first_name=:fname, middle_name=:mname, last_name=:lname, email_address=:emailadd,
-                                                      birthday=:birthday, phone_number=:phonenum
-                                                    where account_id = '$accountId';";
+                        $updateWithoutPass = "update user_account set username=:username, password=:password, address=:address, name=:name where accountNo = '$accountNo';";
                         $sql = $pdo->prepare($updateWithoutPass);
                         $sql->bindParam(':username', $username);
+                        $sql->bindParam(':password', $password);
                         $sql->bindParam(':address', $address);
-                        $sql->bindParam(':fname', $fname);
-                        $sql->bindParam(':mname', $mname);
-                        $sql->bindParam(':lname', $lname);
-                        $sql->bindParam(':emailadd', $emailadd);
-                        $sql->bindParam(':birthday', $birthday);
-                        $sql->bindParam(':phonenum', $phonenum);
+                        $sql->bindParam(':name', $name);
                         $sql->execute();
 
-                        $status = $account->getStatus();
+                        $accountStatus = $account->getStatus();
                         $roleId = $account->getRoleId();
-                        $userPicture = $account->getUserPicture();
+                        $image = $account->getUserPicture();
 
-                        $_SESSION["userAccount"] = new UserAccount($accountId, $username, '', $address, $fname,
-                            $lname, $mname, $status, $emailadd, $birthday, $phonenum, $roleId, $userPicture);
+                        $_SESSION["userAccount"] = new UserAccount($accountNo, $username, '', $address, $name,
+                            $accountStatus, $roleId, $image);
 
                         header('view-profile.php');
                     }
@@ -118,79 +96,58 @@
                         $user = $_SESSION["userAccount"];
                         $user_id = $user->getAccountId();
                         
-                        $qry = $pdo->prepare("select * from user_account left join sp_profile using(account_id) where user_account.account_id = '$user_id'");
+                        $qry = $pdo->prepare("select * accounts where accounts.accountNo = '$user_id'");
                         $qry->execute();
                         $profileqry = $qry->fetch();     
                         
                     ?> 
                     <div class="row">
                         <div class="col-md-12">
-                        <h2 style = "font-family: love ya like a sister;">Edit Profile</h2>   
+                        <h2 style = "font-family: Cinzel Decorative; color:#000000">Edit Profile</h2>   
                         </div>    
                     </div>
                     <div class="jumbotron">
                         <form class="form-horizontal" action="" method="post">
                           <fieldset>
                             <legend style = "font-family: special elite;">Profile</legend>
-                             <div class="form-group">
-                              <label for="inputFirstname" class="col-lg-2 control-label" style = "font-family: milonga; font-size: 110%;">First Name</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputFname" placeholder="<?php echo $profileqry['first_name'] ?>" value="<?php echo $_SESSION["userAccount"]->getFirstName()?>">
-                              </div>
-                            </div>
-                               <div class="form-group">
-                              <label for="inputMiddlename" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Middle Name</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputMname" placeholder="<?php echo $profileqry['middle_name'] ?>" value="<?php echo $_SESSION["userAccount"]->getMiddleName()?>">
-                              </div>
-                            </div>
-                               <div class="form-group">
-                              <label for="inputLastname" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Last Name</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputLname" placeholder="<?php echo $profileqry['last_name'] ?>" value="<?php echo $_SESSION["userAccount"]->getlastName()?>">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Username</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputUsername" placeholder="<?php echo $profileqry['username'] ?>" value="<?php echo $_SESSION["userAccount"]->getUsername()?>">
-                              </div>
-                            </div>
-                                <div class="form-group">
-                              <label for="inputPassword" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Password</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputPassword" placeholder="<?php echo $profileqry['password'] ?>" value="">
-                              </div>
-                            </div>
+                             
+
                               <div class="form-group">
-                                  <label for="inputRePassword" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Repeat Password</label>
+                                <label for="inputAddress" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Address</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="inputAddress" placeholder="<?php echo $profileqry['address'] ?>" value="<?php echo $_SESSION["userAccount"]->getAddress()?>">
+                                  </div>
+                              </div>
+
+
+
+                              <div class="form-group">
+                                <label for="inputname" class="col-lg-2 control-label" style = "font-family: milonga; font-size: 110%;">Name</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="inputname" placeholder="<?php echo $profileqry['name'] ?>" value="<?php echo $_SESSION["userAccount"]->getName()?>">
+                                </div>
+                              </div>     
+
+                              <div class="form-group">
+                                <label for="inputUsername" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Username</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="inputUsername" placeholder="<?php echo $profileqry['username'] ?>" value="<?php echo $_SESSION["userAccount"]->getUsername()?>">
+                                  </div>
+                              </div>                                                     
+
+                              
+                              <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Password</label>
+                                  <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="inputPassword" placeholder="<?php echo $profileqry['password'] ?>" value="">
+                                   </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="inputRePassword" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Re-enter Password</label>
                                   <div class="col-lg-10">
                                       <input type="text" class="form-control" name="inputRePassword" placeholder="<?php echo $profileqry['password'] ?>" value="">
                                   </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputEmail" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Email Address</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputEmail" placeholder="<?php echo $profileqry['email_address'] ?>" value="<?php echo $_SESSION["userAccount"]->getEmailAddress()?>">
-                              </div>
-                            </div>
-                                <div class="form-group">
-                              <label for="inputPhonenum" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Phone Number</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputPhonenum" placeholder="<?php echo $profileqry['phone_number'] ?>" value="<?php echo $_SESSION["userAccount"]->getPhoneNumber()?>">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputAddress" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Home Address</label>
-                              <div class="col-lg-10">
-                                <input type="text" class="form-control" name="inputAddress" placeholder="<?php echo $profileqry['address'] ?>" value="<?php echo $_SESSION["userAccount"]->getAddress()?>">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputBirthday" class="col-lg-2 control-label" style = "font-family: milonga;font-size: 110%;">Birthday</label>
-                              <div class="col-lg-10">
-                                <input type="date" class="form-control" name="inputBirthday" placeholder="<?php echo $profileqry['birthday'] ?>" value="<?php echo $_SESSION["userAccount"]->getBirthday()?>">
-                              </div>
                             </div>
                               <?php
                                 include 'draft.php';
@@ -198,7 +155,7 @@
                                    <div class="form-group">
                                   <div class="col-lg-10 col-lg-offset-2">
                                     <button type="reset" class="btn btn-default">Cancel</button>
-                                    <button type="submit" name="saveprofile" class="btn btn-primary" id="saveprofile" value="submit">Submit</button>
+                                    <button type="submit" name="saveprofile" class="btn btn-primary" id="saveprofile" value="submit">Confirm</button>
                                   </div>
                                 </div>
                             </fieldset>
