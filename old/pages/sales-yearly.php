@@ -48,7 +48,7 @@ require '../classes/UserAccount.php';
                             <option value="">Choose Entity</option>
                             <?php 
                                 require_once 'fragments/connection.php';
-                                $usersQuerry = $pdo->prepare("SELECT name FROM wifira.accounts  union SELECT kioskName FROM wifira.`kiosk machine`;");
+                                $usersQuerry = $pdo->prepare("SELECT name FROM wifira.accounts  union SELECT kioskName FROM wifira.`kioskmachine`;");
                                 $usersQuerry->execute();
                                 $users = $usersQuerry->fetchAll();
                             foreach ($users as $user){
