@@ -37,6 +37,15 @@
             </ul>				
         </li>
 
+		<li>
+            <a href="#"><i class="fa fa-tachometer"></i> Vouchers<span class="fa arrow"></span></a>
+			<ul class="nav nav-second-level">
+            	<li>
+                    <a  href="vouchers-unsold.php"><i class="fa fa-barcode"></i>Unsold Vouchers</a>
+                </li>
+			</ul>
+        </li>		
+		
         <li>
             <a href="#"><i class="fa fa-barcode"></i>Kiosks<span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level">
