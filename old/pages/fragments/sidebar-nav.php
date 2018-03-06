@@ -14,7 +14,7 @@
     </head>
 <nav class="navbar-default navbar-side" role="navigation" >
     <div class="sidebar-collapse" style="background-color: #E95819;">
-        <ul class="nav" id="main-menu" style="position: fixed;" >
+        <ul class="nav" id="main-menu" >
     
         <li>
             <a href=index.php><i class="fa fa-tachometer"></i> Dashboard<span class="fa arrow"></span></a>
@@ -59,6 +59,9 @@
                 </li>
                 <li>
                     <a href="edit-profile.php"><i class="fa fa-pencil-square fa-2x"></i> Edit Profile</a>
+                </li>
+		<li>
+                    <a href="add-account.php"><i class="fa fa-plus-circle fa-2x"></i> Add Account</a>
                 </li>
             </ul>            
         </li>
