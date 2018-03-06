@@ -45,12 +45,18 @@ require '../classes/UserAccount.php';
     (yyyy-mm-dd format)
     </form>
 
+<!--
+    <form id="search-form" name="search" action="" method="get">
+    <input id="search-input" name="search" type="text">
+    <input type="submit" name='submit' class="btn btn-warning" value="Search" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/> -->
+    
+
                     <form action="sales.php" method="get">
                         <select name="user">
                             <option value="">Choose Entity</option>
                             <?php 
                                 require_once 'fragments/connection.php';
-                                $usersQuerry = $pdo->prepare("SELECT name FROM wifira.accounts  union SELECT kioskName FROM wifira.`kiosk machine`;");
+                                $usersQuerry = $pdo->prepare("SELECT name FROM wifira.accounts  union SELECT kioskName FROM wifira.`kioskmachine`;");
                                 $usersQuerry->execute();
                                 $users = $usersQuerry->fetchAll();
                             foreach ($users as $user){
@@ -68,22 +74,35 @@ require '../classes/UserAccount.php';
 
                 <div class="jumbotron"> 
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example" name="anothercontent">
-                        <?php
-                            include 'fragments/request-query.php';
-                            if(isset($_POST['request_done'])){
-                                $rid=$_POST['requestId'];
-                                $sql = $pdo->prepare("update service_request set request_status=4, end_servicing = curdate()  where request_id = '$rid';");
-                                $sql->execute();
-                                //echo "<meta http-equiv='refresh' content='0'>";
-                            }
-
-                            if(isset($_POST['request_cancel'])){
-                                $rid=$_POST['requestId'];
-                                $sql = $pdo->prepare("update service_request set request_status=5 where request_id = '$rid';");
-                                $sql->execute();
-                                //echo "<meta http-equiv='refresh' content='0'>";
-                            }
-                        ?>
+                            <thead>
+                                <tr>
+                                    <th> Voucher Code </th>
+                                    <th> Voucher Type </th>
+                                    <th> Amount </th>
+                                    <th> Date </th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    <?php
+                                    include('fragments/connection.php');
+                                    if (isset($_GET["d1"])) { $d1  = $_GET["d1"]; } else { $d1=0; }; 
+                                    if (isset($_GET["d2"])) { $d2  = $_GET["d2"]; } else { $d2=0; }; 
+                                    $result = $pdo->prepare("SELECT voucherCode, voucherType, voucherAmount, datePrinted FROM vouchers WHERE datePrinted BETWEEN :a AND :b");
+                                    $result->bindParam(':a', $d1);
+                                    $result->bindParam(':b', $d2);
+                                    $result->execute();
+                                    for($i=0; $row = $result->fetch(); $i++){
+                                    ?>
+                                    <tr class="record">
+                                    <td><?php echo $row['voucherCode']; ?></td>
+                                    <td><?php echo $row['voucherType']; ?></td>
+                                    <td><?php echo $row['voucherAmount']; ?></td>
+                                    <td><?php echo $row['datePrinted']; ?></td>
+                                    </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
                     </table>
                 </div>
                      <!--  <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    -->
