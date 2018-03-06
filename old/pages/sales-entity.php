@@ -69,22 +69,37 @@ require '../classes/UserAccount.php';
 
                 <div class="jumbotron"> 
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example" name="anothercontent">
-                        <?php
-                            include 'fragments/request-query.php';
-                            if(isset($_POST['request_done'])){
-                                $rid=$_POST['requestId'];
-                                $sql = $pdo->prepare("update service_request set request_status=4, end_servicing = curdate()  where request_id = '$rid';");
-                                $sql->execute();
-                                //echo "<meta http-equiv='refresh' content='0'>";
-                            }
-
-                            if(isset($_POST['request_cancel'])){
-                                $rid=$_POST['requestId'];
-                                $sql = $pdo->prepare("update service_request set request_status=5 where request_id = '$rid';");
-                                $sql->execute();
-                                //echo "<meta http-equiv='refresh' content='0'>";
-                            }
-                        ?>
+                            <thead>
+                                <tr>
+                                    <th> Voucher Code </th>
+                                    <th> Voucher Type </th>
+                                    <th> Amount </th>
+                                    <th> Date </th>
+                                    <th> Account No </th>
+                                    <th> Kiosk ID </th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    <?php
+                                    include('fragments/connection.php');
+                                    if (isset($_GET["entity"])) { $entity  = $_GET["entity"]; } else { $entity=0; }; 
+                                    $result = $pdo->prepare("SELECT voucherCode, voucherType, voucherAmount, datePrinted, accountNo, kioskId FROM vouchers WHERE accountNo=:a OR kioskId=:a");
+                                    $result->bindParam(':a', $entity);
+                                    $result->execute();
+                                    for($i=0; $row = $result->fetch(); $i++){
+                                    ?>
+                                    <tr class="record">
+                                    <td><?php echo $row['voucherCode']; ?></td>
+                                    <td><?php echo $row['voucherType']; ?></td>
+                                    <td><?php echo $row['voucherAmount']; ?></td>
+                                    <td><?php echo $row['datePrinted']; ?></td>
+                                    <td><?php echo $row['accountNo']; ?></td>
+                                    <td><?php echo $row['kioskId']; ?></td>
+                                    </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
                     </table>
                 </div>
                      <!--  <input type="submit" name='submit' class="btn btn-warning" value="Print" class="col s6" class='submit' style="background-color:#686667; font-family:monospace; font-size:18px;"/><br />    -->
